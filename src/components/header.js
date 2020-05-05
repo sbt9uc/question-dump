@@ -1,31 +1,22 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import { DumpsterImage } from "../happy-dumpster"
-import styled from "styled-components"
-
-const HeaderWrapper = styled.div`
-  margin: 0px auto;
-  maxwidth: 960px;
-  padding: 30px 250px;
-  display: flex;
-  flex-direction: row;
-`
-
-const TextWrapper = styled.h1`
-  padding: 15px;
-  margin: 0px;
-`
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `#348a69`,
+      background: `rebeccapurple`,
       marginBottom: `1.45rem`,
     }}
   >
-    <HeaderWrapper>
-      <TextWrapper>
+    <div
+      style={{
+        margin: `0 auto`,
+        maxWidth: 960,
+        padding: `1.45rem 1.0875rem`,
+      }}
+    >
+      <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
@@ -35,8 +26,8 @@ const Header = ({ siteTitle }) => (
         >
           {siteTitle}
         </Link>
-      </TextWrapper>
-    </HeaderWrapper>
+      </h1>
+    </div>
   </header>
 )
 
