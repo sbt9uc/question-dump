@@ -16,6 +16,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -25,7 +26,14 @@ module.exports = {
         background_color: `#348a69`,
         theme_color: `#348a69`,
         display: `minimal-ui`,
-        icon: `src/images/flame-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/fire-emoji.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: 'dumpster-fire-questions-ui',
+        // https://www.gatsbyjs.org/packages/gatsby-plugin-s3/
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

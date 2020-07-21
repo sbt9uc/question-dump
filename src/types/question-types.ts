@@ -3,6 +3,11 @@ export interface IDumpsterQuestion {
   question: string
   isActive: boolean
   isApproved: number
-  createdOn: number
-  updatedOn: number
+  createdOn?: number
+  updatedOn?: number
+}
+
+export interface IParams {
+  isActive: boolean
+  isApproved: number
 }

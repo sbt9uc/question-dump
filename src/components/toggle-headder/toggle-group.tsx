@@ -1,8 +1,8 @@
-import React, { useState } from "react"
-import { IDefaultProps } from "../../types/default-props"
-import styled from "styled-components"
-import colors from "../colors"
-import { ToggleButton } from "./toggle-button"
+import React, { useState } from 'react'
+import { IDefaultProps } from '../../types/default-props'
+import styled from 'styled-components'
+import colors from '../colors'
+import { ToggleButton } from './toggle-button'
 
 export interface IFilterProps extends IDefaultProps {
   /**
@@ -30,14 +30,8 @@ interface ITextPairs {
 }
 
 const StyledHeader = styled.div`
-  border-radius: 5px;
-  background-color: ${colors.gray1};
-  padding: 10px;
   min-height: 50px;
   min-width: 500px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 `
 
 export const ToggleGroup: React.FunctionComponent<IFilterProps> = (
@@ -66,5 +60,19 @@ export const ToggleGroup: React.FunctionComponent<IFilterProps> = (
     })
   }
 
-  return <StyledHeader {...props}>{renderHeaderButtons()}</StyledHeader>
+  return (
+    <StyledHeader
+      {...props}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        borderRadius: '5px',
+        backgroundColor: colors.gray1,
+        padding: '10px',
+      }}
+    >
+      {renderHeaderButtons()}
+    </StyledHeader>
+  )
 }

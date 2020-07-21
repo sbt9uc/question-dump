@@ -1,9 +1,9 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-import { BasicButton } from "../../components/button"
-import axios from "axios"
-import { request } from "../../../endpoints"
-import { DumpsterImage } from "../../components/happy-dumpster"
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import { BasicButton } from '../../components/button'
+import axios from 'axios'
+import { request } from '../../../endpoints'
+import { DumpsterImage } from '../../components/happy-dumpster'
 
 const IntroText = styled.div`
   font-size: 20px;
@@ -32,7 +32,7 @@ const SubmitWrapper = styled.div`
 export const QuestionForm: React.FunctionComponent<React.HTMLProps<
   HTMLElement
 >> = () => {
-  const [question, setQuestion] = useState<string>("")
+  const [question, setQuestion] = useState<string>('')
   const [requestSuccess, setRequestSuccess] = useState<boolean>(false)
 
   const handleSubmit = (e: any) => {
@@ -70,7 +70,7 @@ export const QuestionForm: React.FunctionComponent<React.HTMLProps<
     <>
       <IntroText>
         Think you've got a question that will spark some debate in #dmv-social?
-        Submit them here!
+        Submit it here!
       </IntroText>
       <InputWrapper onBlur={(e: any) => setQuestion(e.target.value)} />
       <BasicButton onClick={handleSubmit}> Submit </BasicButton>

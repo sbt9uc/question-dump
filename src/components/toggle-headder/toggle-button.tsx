@@ -1,7 +1,7 @@
-import React from "react"
-import { IDefaultProps } from "../../types/default-props"
-import styled from "styled-components"
-import colors from "../colors"
+import React from 'react'
+import { IDefaultProps } from '../../types/default-props'
+import styled from 'styled-components'
+import colors from '../colors'
 
 export interface IButtonProps extends IDefaultProps {
   /**
@@ -36,5 +36,19 @@ const StyledToggleButton = styled.div`
 export const ToggleButton: React.FunctionComponent<IButtonProps> = (
   props: IButtonProps
 ) => {
-  return <StyledToggleButton {...props}>{props.children}</StyledToggleButton>
+  return (
+    <StyledToggleButton
+      {...props}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        borderRadius: '5px',
+        backgroundColor: props.isSelected ? colors.gray2 : colors.gray1,
+        padding: '10px',
+        cursor: 'pointer',
+      }}
+    >
+      {props.children}
+    </StyledToggleButton>
+  )
 }

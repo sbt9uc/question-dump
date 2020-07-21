@@ -1,21 +1,14 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
 
-import Layout from "../components/layouts/layout"
-import Image from "../components/image"
-import SEO from "../components/layouts/seo"
+import Layout from '../components/layouts/layout'
+import SEO from '../components/layouts/seo'
+import { QuestionForm } from '../modules/submit-page/question-form'
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site BLAH.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+const NewQuestionPage = () => (
+  <Layout title="Dumpster Fire Questions">
+    <SEO title="Submit Questions" />
+    <QuestionForm />
   </Layout>
 )
 
-export default IndexPage
+export default NewQuestionPage
