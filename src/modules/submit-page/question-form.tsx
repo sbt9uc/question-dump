@@ -29,18 +29,35 @@ const SubmitWrapper = styled.div`
   flex-direction: column;
 `
 
-export const QuestionForm: React.FunctionComponent<React.HTMLProps<
-  HTMLElement
->> = () => {
-  const [question, setQuestion] = useState<string>('')
-  const [requestSuccess, setRequestSuccess] = useState<boolean>(false)
+interface ISubmitFormProps extends React.HTMLProps<HTMLElement> {
+  /**
+   * [required] end of url
+   */
+  submitString: string,
+  /**
+   * [required] default text to show with input and submit button
+   */
+  introText: string,
+  /**
+   * [required] message to show after submit
+   */
+  sucessfulSubmitMessage: string,
+  /**
+   * [optional] indicates whether to show happy dumpster image
+   */
+  showDumpsterPic?: boolean;
+}
+
+export const QuestionForm: React.FunctionComponent<ISubmitFormProps> = (props) => {
+  const [inputValue, setInputValue] = useState<string>('');
+  const [requestSuccess, setRequestSuccess] = useState<boolean>(false);
 
   const handleSubmit = (e: any) => {
     axios
       .post(
-        `${request.url}/dev/createFireQuestion`,
+        `${request.url}/dev/${props.submitString}`,
         {
-          question: question,
+          question: inputValue,
         },
         { headers: request.header }
       )
@@ -54,11 +71,8 @@ export const QuestionForm: React.FunctionComponent<React.HTMLProps<
   const renderSucessfulSubmit = () => {
     return (
       <SubmitWrapper>
-        <DumpsterImage />
-        <IntroText>
-          Your question has been submitted. If approved it will appear in the
-          dmv-social channel randomly.
-        </IntroText>
+        { props.showDumpsterPic && <DumpsterImage />}
+        <IntroText>{props.introText}</IntroText>
         <BasicButtonLong onClick={() => setRequestSuccess(false)}>
           Submit Again
         </BasicButtonLong>
@@ -68,11 +82,8 @@ export const QuestionForm: React.FunctionComponent<React.HTMLProps<
 
   const renderQuestionForm = () => (
     <>
-      <IntroText>
-        Think you've got a question that will spark some debate in #dmv-social?
-        Submit it here!
-      </IntroText>
-      <InputWrapper onBlur={(e: any) => setQuestion(e.target.value)} />
+      <IntroText>{props.sucessfulSubmitMessage}</IntroText>
+      <InputWrapper onBlur={(e: any) => setInputValue(e.target.value)} />
       <BasicButton onClick={handleSubmit}> Submit </BasicButton>
     </>
   )
