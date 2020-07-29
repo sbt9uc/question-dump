@@ -6,6 +6,7 @@ import SEO from '../components/layouts/seo'
 import ApproveQuestionComponent from '../modules/approval-page/approval-component'
 import { BasicButton } from '../components/button'
 import { secretWord as pw } from '../../endpoints'
+import { StoreProvider } from '../modules/store'
 
 const InputWrapper = styled.input`
   width: 150px;
@@ -36,7 +37,6 @@ const ApproveQuestionPage = () => {
           flexDirection: 'row',
           alignItems: 'center',
           width: '200',
-          // justifyContent: 'space-around',
         }}
       >
         <InputWrapper onBlur={(e: any) => setSecretWord(e.target.value)} />
@@ -48,10 +48,12 @@ const ApproveQuestionPage = () => {
   }
 
   return (
-    <Layout title="Connection Circle Approval - Dumpster Fire Questions">
-      <SEO title="Approve Questions" />
-      {lockScreen ? renderTest() : <ApproveQuestionComponent />}
-    </Layout>
+    <StoreProvider>
+      <Layout title="Connection Circle Approval - Dumpster Fire Questions">
+        <SEO title="Approve Questions" />
+        {lockScreen ? renderTest() : <ApproveQuestionComponent />}
+      </Layout>
+    </StoreProvider>
   )
 }
 

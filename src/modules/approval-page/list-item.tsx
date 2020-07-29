@@ -2,27 +2,22 @@ import React from 'react'
 import { IDefaultProps } from '../../types/default-props'
 import styled from 'styled-components'
 import colors from '../../components/colors'
-import { IDumpsterQuestion } from '../../types/question-types'
+import { IDumpsterItem } from '../../types/question-types'
 import { BasicButton } from '../../components/button'
-import { doUpdate } from './services'
+import { doUpdate } from './actions'
+import { useStore } from '../store'
 
 export interface IRowProps extends IDefaultProps {
   /**
-   * [required] Callback when user clicks button
-   * `id` or `null` will be passed to `onClick`
-   */
-  onClick?: (id?: string) => void
-  /**
    * [required] question object to display
    */
-  question: IDumpsterQuestion
+  question: IDumpsterItem
   /**
    * is it a title row
    */
   isTitle?: boolean
 
-  questionList: IDumpsterQuestion[]
-  updateList: (a: IDumpsterQuestion[]) => void
+  questionList: IDumpsterItem[];
 }
 
 const QuesstionWrapper = styled.div`
@@ -59,12 +54,14 @@ const StyledBasicButton = styled(BasicButton)`
 const TextWrapper = styled.div`
   display: flex;
   align-self: center;
-  margin: ${(props: IRowProps) => (props.isTitle ? '10px;' : '0px;')};
+  margin: 0px;
 `
 
 export const QuestionItem: React.FunctionComponent<IRowProps> = (
   props: IRowProps
 ) => {
+  const {state, dispatch } = useStore();
+
   const renderButton = () => {
     props.question.createdOn
     const { createdOn, updatedOn, ...q } = props.question
@@ -74,8 +71,8 @@ export const QuestionItem: React.FunctionComponent<IRowProps> = (
           onClick={() =>
             doUpdate(
               { ...q, isApproved: 1 },
-              props.questionList,
-              props.updateList
+              state,
+              dispatch,
             )
           }
         >
@@ -85,8 +82,8 @@ export const QuestionItem: React.FunctionComponent<IRowProps> = (
           onClick={() =>
             doUpdate(
               { ...q, isActive: false, isApproved: 0 },
-              props.questionList,
-              props.updateList
+              state,
+              dispatch,
             )
           }
         >

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 import { ToggleGroup } from '../../components/toggle-headder/toggle-group'
-import { IDumpsterQuestion, IParams } from '../../types/question-types'
+import { IDumpsterItem, ApprovalTab} from '../../types/question-types'
 import { QuestionItem } from './list-item'
-import { doFetch } from './services'
-import { listContext } from './list-context'
+import { doFetchList } from './actions'
+import { useStore } from '../store'
 
 const StyledToggle = styled(ToggleGroup)`
   margin-bottom: 25px;
@@ -13,84 +13,53 @@ const StyledToggle = styled(ToggleGroup)`
 
 const headerOptions = [
   {
-    id: 'unaproved',
+    id: ApprovalTab.UNAPPROVED,
     textDisplay: 'Questions Pending Approval',
   },
   {
-    id: 'approved-unasked',
+    id: ApprovalTab.APPROVED,
     textDisplay: 'Approved & Unasked',
   },
   {
-    id: 'approved-asked',
+    id: ApprovalTab.ALREADY_ASKED,
     textDisplay: 'Approved & Asked',
   },
 ]
 
 const ApproveQuestionComponent = () => {
-  const [currentTab, setCurrentTab] = useState<string>('unaproved')
-  const questionListC = React.useContext(listContext.QuestionListContext)
-  const [questionsList, setQuestionsList] = useState<IDumpsterQuestion[]>([])
+  const {state, dispatch} = useStore();
+
+  debugger;
 
   const renderQuestionsList = () => {
-    return questionsList?.map((q: IDumpsterQuestion) => {
+    return state?.displayList?.map((q: IDumpsterItem) => {
       return (
         <QuestionItem
           question={q}
           key={q.id}
           questionList={[]}
-          updateList={(a: IDumpsterQuestion[]) => {
-            /** TEST */
-          }}
         />
       )
     })
   }
 
   useEffect(() => {
-    debugger
-    if (currentTab === 'unaproved') {
-      doFetch(
-        { isActive: true, isApproved: 0 },
-        questionsList,
-        setQuestionsList
-      )
+    if (state.currentTab === ApprovalTab.UNAPPROVED) {
+      doFetchList({ isActive: true, isApproved: 0 }, state, dispatch);
     }
-    if (currentTab === 'approved-unasked') {
-      doFetch(
-        { isActive: true, isApproved: 1 },
-        questionsList,
-        setQuestionsList
-      )
+    if (state.currentTab === ApprovalTab.APPROVED) {
+      doFetchList( { isActive: true, isApproved: 1 }, state, dispatch);
     }
-    if (currentTab === 'approved-asked') {
-      doFetch(
-        { isActive: false, isApproved: 1 },
-        questionsList,
-        setQuestionsList
-      )
+    if (state.currentTab === ApprovalTab.ALREADY_ASKED) {
+      doFetchList( { isActive: false, isApproved: 1 }, state, dispatch );
     }
-  }, [currentTab, questionsList])
+  }, [state.currentTab, state.displayList.length])
 
-  const a = {
-    isActive: false,
-    question: 'What is your biggest pet peeve?',
-    updatedOn: 1588257990888,
-    isApproved: 1,
-    id: '61172680-8af1-11ea-9929-c54e9d09a1cd',
-    createdOn: 1588257990888,
-  }
+  const switchTab = (newTab: ApprovalTab) => dispatch({type: 'SWITCH_TAB', payload: {newTab}});
 
   return (
     <>
-      <StyledToggle onChange={setCurrentTab} headerTitles={headerOptions} />
-      {currentTab !== 'unaproved' && (
-        <QuestionItem
-          question={a}
-          questionList={questionsList}
-          updateList={setQuestionsList}
-          isTitle
-        />
-      )}
+      <StyledToggle onChange={switchTab} headerTitles={headerOptions} />
       {renderQuestionsList()}
     </>
   )

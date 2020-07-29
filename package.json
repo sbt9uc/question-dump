@@ -28,10 +28,11 @@
     "serverless": "^1.69.0",
     "serverless-cloudfront-invalidate": "^1.4.0",
     "serverless-finch": "^2.5.2",
-    "styled-components": "^5.1.0",
+    "styled-components": "5.0.1",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/styled-components": "5.0.1",
     "prettier": "2.0.5"
   },
   "keywords": [

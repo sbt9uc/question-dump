@@ -8,12 +8,6 @@ export interface IBaseButtonProps extends IDefaultProps {
    */
   id?: string
   /**
-   * [required] Callback when user clicks button
-   *
-   * `id` or `null` will be passed to `onClick`
-   */
-  onClick: (id?: string) => void
-  /**
    * [optional] Disables button interactions and applies styling
    * when `true`
    */
@@ -41,5 +35,6 @@ const StyledButton = styled.button`
 export const BasicButton: React.FunctionComponent<IBaseButtonProps> = (
   props: IBaseButtonProps
 ) => {
+
   return <StyledButton {...props}>{props.children}</StyledButton>
 }

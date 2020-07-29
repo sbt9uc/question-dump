@@ -3,6 +3,7 @@ import { IDefaultProps } from '../../types/default-props'
 import styled from 'styled-components'
 import colors from '../colors'
 import { ToggleButton } from './toggle-button'
+import { ApprovalTab } from '../../types/question-types'
 
 export interface IFilterProps extends IDefaultProps {
   /**
@@ -21,7 +22,7 @@ export interface IFilterProps extends IDefaultProps {
   /**
    * [required] onChange to pass to page
    */
-  onChange: (id: string) => void
+  onChange: (id: ApprovalTab) => void
 }
 
 interface ITextPairs {
@@ -39,7 +40,7 @@ export const ToggleGroup: React.FunctionComponent<IFilterProps> = (
 ) => {
   const [currentId, setCurrentId] = useState<string>(props.headerTitles[0].id)
 
-  const handleToggle = (id: string) => {
+  const handleToggle = (id: ApprovalTab) => {
     setCurrentId(id)
     props.onChange(id)
   }
@@ -51,7 +52,7 @@ export const ToggleGroup: React.FunctionComponent<IFilterProps> = (
         <ToggleButton
           isSelected={isSelected}
           id={header.id}
-          onClick={() => handleToggle(header.id)}
+          onClick={() => handleToggle(header.id as ApprovalTab)}
           key={header.id}
         >
           {header.textDisplay}
@@ -62,7 +63,6 @@ export const ToggleGroup: React.FunctionComponent<IFilterProps> = (
 
   return (
     <StyledHeader
-      {...props}
       style={{
         display: 'flex',
         flexDirection: 'row',
