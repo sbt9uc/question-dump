@@ -2,13 +2,16 @@ import React from 'react'
 
 import Layout from '../components/layouts/layout'
 import SEO from '../components/layouts/seo'
-import { QuestionForm } from '../modules/submit-page/question-form'
+import { StoreProvider } from '../modules/store'
+import { SelectModeComponet } from '../modules/select-mode/select-mode-landing-page'
 
 const NewQuestionPage = () => (
-  <Layout title="Dumpster Fire Questions">
-    <SEO title="Submit Questions" />
-    <QuestionForm />
-  </Layout>
+  <StoreProvider>
+    <Layout title="Pariveda DC Slackbot Submissions">
+      <SEO title="DC Slackbots" />
+      <SelectModeComponet />
+    </Layout>
+  </StoreProvider>
 )
 
 export default NewQuestionPage

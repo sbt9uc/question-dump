@@ -95,7 +95,6 @@ kbd,
 pre,
 samp {
   font-family: monospace, monospace;
-  font-size: 1em;
 }
 figure {
   margin: 1em 40px;
@@ -285,7 +284,6 @@ h4 {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 1rem;
   line-height: 1.1;
 }
 h5 {
@@ -302,7 +300,6 @@ h5 {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 0.85028rem;
   line-height: 1.1;
 }
 h6 {
@@ -319,7 +316,6 @@ h6 {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
-  font-size: 0.78405rem;
   line-height: 1.1;
 }
 hgroup {
@@ -401,7 +397,6 @@ pre {
   margin-right: 0;
   margin-top: 0;
   margin-bottom: 1.45rem;
-  font-size: 0.85rem;
   line-height: 1.42;
   background: hsla(0, 0%, 0%, 0.04);
   border-radius: 3px;
@@ -418,7 +413,6 @@ table {
   padding-right: 0;
   padding-top: 0;
   margin-bottom: 1.45rem;
-  font-size: 1rem;
   line-height: 1.45rem;
   border-collapse: collapse;
   width: 100%;
@@ -540,15 +534,12 @@ li > p {
   margin-bottom: calc(1.45rem / 2);
 }
 code {
-  font-size: 0.85rem;
   line-height: 1.45rem;
 }
 kbd {
-  font-size: 0.85rem;
   line-height: 1.45rem;
 }
 samp {
-  font-size: 0.85rem;
   line-height: 1.45rem;
 }
 abbr {

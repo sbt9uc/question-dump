@@ -33,6 +33,11 @@ const reducer = (state: IApprovalReducer, action: IAction) => {
         ...state,
         currentTab: action.payload.newTab,
       }
+    case 'SELECT_SITE_MODE':
+      return {
+        ...state,
+        mode: action.payload.mode,
+      }
     case 'APPROVE_QUESTION':
       return state;
     default:

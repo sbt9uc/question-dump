@@ -29,8 +29,6 @@ const headerOptions = [
 const ApproveQuestionComponent = () => {
   const {state, dispatch} = useStore();
 
-  debugger;
-
   const renderQuestionsList = () => {
     return state?.displayList?.map((q: IDumpsterItem) => {
       return (
