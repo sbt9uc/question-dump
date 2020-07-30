@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { BasicButton } from '../../components/button'
 import axios from 'axios'
 import { request } from '../../../endpoints'
-import { DumpsterImage } from '../../components/happy-dumpster'
+import { DumpsterImage } from '../../components/image-components/happy-dumpster'
 
 const IntroText = styled.div`
   font-size: 20px;
@@ -72,7 +72,7 @@ export const QuestionForm: React.FunctionComponent<ISubmitFormProps> = (props) =
     return (
       <SubmitWrapper>
         { props.showDumpsterPic && <DumpsterImage />}
-        <IntroText>{props.introText}</IntroText>
+        <IntroText>{props.sucessfulSubmitMessage}</IntroText>
         <BasicButtonLong onClick={() => setRequestSuccess(false)}>
           Submit Again
         </BasicButtonLong>
@@ -82,7 +82,7 @@ export const QuestionForm: React.FunctionComponent<ISubmitFormProps> = (props) =
 
   const renderQuestionForm = () => (
     <>
-      <IntroText>{props.sucessfulSubmitMessage}</IntroText>
+      <IntroText>{props.introText}</IntroText>
       <InputWrapper onBlur={(e: any) => setInputValue(e.target.value)} />
       <BasicButton onClick={handleSubmit}> Submit </BasicButton>
     </>

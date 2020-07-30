@@ -24,6 +24,14 @@ export enum ApprovalMode {
   ZOOM_BACKGROUNDS =  'zoomTheme'
 }
 
+export enum BoldnessLevels {
+  LIGHT = 300,
+  NORMAL = 400,
+  SEMI_BOLD = 500,
+  BOLD =  600,
+  EXTRA_BOLD = 800
+}
+
 export interface IAction {
   type: string,
   payload: any,

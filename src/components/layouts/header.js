@@ -1,19 +1,16 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import { DumpsterImage } from "../happy-dumpster"
 import styled from "styled-components"
 
 const HeaderWrapper = styled.div`
-  margin: 0px auto;
   maxwidth: 960px;
-  padding: 30px 250px;
+  padding: 30px 160px;
   display: flex;
   flex-direction: row;
 `
 
 const TextWrapper = styled.h1`
-  padding: 15px;
   margin: 0px;
 `
 
