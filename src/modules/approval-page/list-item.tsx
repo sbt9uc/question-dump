@@ -11,13 +11,11 @@ export interface IRowProps extends IDefaultProps {
   /**
    * [required] question object to display
    */
-  question: IDumpsterItem
+  item: IDumpsterItem
   /**
    * is it a title row
    */
   isTitle?: boolean
-
-  questionList: IDumpsterItem[];
 }
 
 const QuesstionWrapper = styled.div`
@@ -44,6 +42,11 @@ const TableHeader = styled(QuesstionWrapper)`
   }
   font-weight: 600px;
 `
+const TextWrapper = styled.div`
+  display: flex;
+  align-self: center;
+  margin: 0px;
+`
 
 const StyledBasicButton = styled(BasicButton)`
   font-size: 12px;
@@ -51,11 +54,7 @@ const StyledBasicButton = styled(BasicButton)`
   background-color: ${colors.periwinkle};
 `
 
-const TextWrapper = styled.div`
-  display: flex;
-  align-self: center;
-  margin: 0px;
-`
+
 
 export const QuestionItem: React.FunctionComponent<IRowProps> = (
   props: IRowProps
@@ -63,8 +62,8 @@ export const QuestionItem: React.FunctionComponent<IRowProps> = (
   const {state, dispatch } = useStore();
 
   const renderButton = () => {
-    props.question.createdOn
-    const { createdOn, updatedOn, ...q } = props.question
+    props.item.createdOn
+    const { createdOn, updatedOn, ...q } = props.item
     return (
       <div>
         <StyledBasicButton
@@ -94,9 +93,11 @@ export const QuestionItem: React.FunctionComponent<IRowProps> = (
   }
 
   const renderLastUpdated = () => {
-    const updatedDate = new Date(props.question.updatedOn || 0)
+    const updatedDate = new Date(props.item.updatedOn || 0)
     return <TextWrapper>{updatedDate.toLocaleDateString('en-US')}</TextWrapper>
   }
+
+  const renderValue = props.item.question || props.item.zoomTheme;
 
   return props.isTitle ? (
     <TableHeader {...props}>
@@ -106,10 +107,10 @@ export const QuestionItem: React.FunctionComponent<IRowProps> = (
   ) : (
     <QuesstionWrapper {...props}>
       <TextWrapper style={{ maxWidth: '600px' }}>
-        {props.question.question}
+        {renderValue}
       </TextWrapper>
-      {!props.question.isApproved && props.question.isActive && renderButton()}
-      {props.question.isApproved ? renderLastUpdated() : null}
+      {!props.item.isApproved && props.item.isActive && renderButton()}
+      {props.item.isApproved ? renderLastUpdated() : null}
     </QuesstionWrapper>
   )
 }

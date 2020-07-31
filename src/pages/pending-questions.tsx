@@ -7,6 +7,7 @@ import ApproveQuestionComponent from '../modules/approval-page/approval-componen
 import { BasicButton } from '../components/button'
 import { secretWord as pw } from '../../endpoints'
 import { StoreProvider } from '../modules/store'
+import { SelectApprovalModeComponet } from '../modules/approval-page/landing-page'
 
 const InputWrapper = styled.input`
   width: 150px;
@@ -49,9 +50,9 @@ const ApproveQuestionPage = () => {
 
   return (
     <StoreProvider>
-      <Layout title="Connection Circle Approval - Dumpster Fire Questions">
+      <Layout title="Connection Circle Approval">
         <SEO title="Approve Questions" />
-        {lockScreen ? renderTest() : <ApproveQuestionComponent />}
+        {lockScreen ? renderTest() : <SelectApprovalModeComponet />}
       </Layout>
     </StoreProvider>
   )
