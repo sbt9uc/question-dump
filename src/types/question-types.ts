@@ -21,7 +21,8 @@ export enum ApprovalTab {
 
 export enum ApprovalMode {
   QUESTIONS = 'question',
-  ZOOM_BACKGROUNDS =  'zoomTheme'
+  ZOOM_BACKGROUNDS =  'zoomTheme',
+  NONE = '',
 }
 
 export enum BoldnessLevels {

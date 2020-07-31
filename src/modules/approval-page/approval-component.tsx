@@ -24,18 +24,24 @@ const headerOptions = [
     id: ApprovalTab.ALREADY_ASKED,
     textDisplay: 'Approved & Asked',
   },
-]
+];
+
+const dummyQForHeader: IDumpsterItem = {
+  isApproved: 0,
+  isActive: false,
+  id: 'testId'
+}
 
 const ApproveQuestionComponent = () => {
   const {state, dispatch} = useStore();
 
   const renderQuestionsList = () => {
+    console.log(state.displayList);
     return state?.displayList?.map((q: IDumpsterItem) => {
       return (
         <QuestionItem
-          question={q}
+          item={q}
           key={q.id}
-          questionList={[]}
         />
       )
     })
@@ -51,14 +57,15 @@ const ApproveQuestionComponent = () => {
     if (state.currentTab === ApprovalTab.ALREADY_ASKED) {
       doFetchList( { isActive: false, isApproved: 1 }, state, dispatch );
     }
-  }, [state.currentTab, state.displayList.length])
+  }, [state.currentTab, state.displayList?.length])
 
   const switchTab = (newTab: ApprovalTab) => dispatch({type: 'SWITCH_TAB', payload: {newTab}});
 
   return (
     <>
       <StyledToggle onChange={switchTab} headerTitles={headerOptions} />
-      {renderQuestionsList()}
+      <QuestionItem item={dummyQForHeader} isTitle />
+      { renderQuestionsList()}
     </>
   )
 }

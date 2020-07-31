@@ -68,10 +68,8 @@ height: 100px;
 export const SelectModeComponet: React.FunctionComponent<IDefaultProps> = (
   props: IDefaultProps
 ) => {
-    const {state, dispatch} = useStore();
     
     const chooseSiteMode = (mode: ApprovalMode) => {
-        dispatch({type: 'SELECT_SITE_MODE', payload: {mode}});
         const redirectUrl = mode === ApprovalMode.ZOOM_BACKGROUNDS ? '/new-zoom-themes' : mode === ApprovalMode.QUESTIONS ? '/new-questions' : '/';
         navigate(redirectUrl);
     };

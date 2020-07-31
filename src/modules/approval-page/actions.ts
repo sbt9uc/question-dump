@@ -16,7 +16,8 @@ export const doFetchList = (
     })
     .then(response => {
       if (response.status === 200 || response.status === 201) {
-        return dispatch({type: 'FETCH_LIST', payload: { list: response.data.questions }});
+        const data = response?.data?.questions || response?.data?.zoomThemes;
+        return dispatch({type: 'FETCH_LIST', payload: { list: data }});
       }
     })
 }
@@ -26,7 +27,7 @@ export const doUpdate = (
   state: any,
   dispatch: React.Dispatch<any>,
 ) => {
-  const endpoint = state.mode === ApprovalMode.QUESTIONS ? 'updateFireQuestion' : state.mode === ApprovalMode.ZOOM_BACKGROUNDS ? 'getZoomThemes' : ''
+  const endpoint = state.mode === ApprovalMode.QUESTIONS ? 'updateFireQuestion' : state.mode === ApprovalMode.ZOOM_BACKGROUNDS ? 'updateZoomTheme' : ''
   axios
     .post(
       `${request.url}/dev/${endpoint}`,

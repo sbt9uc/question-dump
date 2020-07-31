@@ -10,7 +10,7 @@ interface IApprovalReducer {
 const defaultState = {
   displayList: [],
   currentTab: ApprovalTab.UNAPPROVED,
-  mode: ApprovalMode.QUESTIONS
+  mode: ApprovalMode.NONE,
 };
 
 const StoreContext = React.createContext<{
@@ -26,7 +26,7 @@ const reducer = (state: IApprovalReducer, action: IAction) => {
     case 'FETCH_LIST':
       return {
         ...state,
-        displayList: action.payload.list
+        displayList: action.payload.list,
       }
     case 'SWITCH_TAB': 
       return {
@@ -37,6 +37,7 @@ const reducer = (state: IApprovalReducer, action: IAction) => {
       return {
         ...state,
         mode: action.payload.mode,
+        displayList: defaultState.displayList,
       }
     case 'APPROVE_QUESTION':
       return state;
