@@ -7,7 +7,7 @@ import { SelectModeComponet } from '../modules/select-mode/select-mode-landing-p
 
 const NewQuestionPage = () => (
   <StoreProvider>
-    <Layout title="Pariveda DC Slackbot Submissions">
+    <Layout title="Pariveda DC Slackbots">
       <SEO title="DC Slackbots" />
       <SelectModeComponet />
     </Layout>
